@@ -36,5 +36,3 @@ jobs:
 
       - name: Push Docker image
         run: docker push iamsujata/student-app:latest
-
-        
