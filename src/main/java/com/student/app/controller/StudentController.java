@@ -64,5 +64,4 @@ public class StudentController {
     public String healthCheck() {
         return "Student Service is running!";
     }
-
 }
