@@ -64,4 +64,9 @@ public class StudentController {
     public String healthCheck() {
         return "Student Service is running!";
     }
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "Working!!!!";
+    }
 }
