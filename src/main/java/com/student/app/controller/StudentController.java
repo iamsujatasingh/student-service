@@ -60,4 +60,9 @@ public class StudentController {
         return ResponseEntity.ok("Thread 2 started");
     }
 
+    @GetMapping("/health")
+    public String healthCheck() {
+        return "Student Service is running!";
+    }
+
 }
