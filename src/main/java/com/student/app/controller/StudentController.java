@@ -67,6 +67,6 @@ public class StudentController {
 
     @GetMapping("/ping")
     public String ping() {
-        return "Working!!!!";
+        return "Its Working !!";
     }
 }
