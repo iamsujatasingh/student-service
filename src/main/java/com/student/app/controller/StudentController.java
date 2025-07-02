@@ -21,7 +21,6 @@ import java.util.List;
 public class StudentController {
 
     private final StudentRepo repo;
-
     private final StudentService service;
 
     @GetMapping("/join")
