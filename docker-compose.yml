@@ -16,7 +16,7 @@ services:
     image: iamsujata/student-app:latest
     container_name: student-service
     ports:
-      - "8050:8050"
+      - "8080:8080"
     depends_on:
       - postgres
     restart: always
