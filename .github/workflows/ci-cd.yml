@@ -26,7 +26,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t student-app .
+        run: docker build -t iamsujata/student-app:latest .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
