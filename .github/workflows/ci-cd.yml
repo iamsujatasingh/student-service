@@ -18,6 +18,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+      IMAGE_NAME: iamsujata/student-app
+      IMAGE_TAG: ${{ github.sha }}
 
     steps:
       - name: Checkout code
@@ -33,7 +37,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+        run: docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -50,13 +54,12 @@ jobs:
 
       - name: Tag Docker image for ECR
         run: |
-          docker tag iamsujata/student-app:latest \
-          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/student-app:${{ github.sha }}
+          docker tag $IMAGE_NAME:$IMAGE_TAG ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
+
 
       - name: Push Docker image to ECR
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/student-app:${{ github.sha }}     #   run: docker build -t iamsujata/student-app:latest .
-
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
      # - name: Log in to Docker Hub
       #  uses: docker/login-action@v2
       #  with:
